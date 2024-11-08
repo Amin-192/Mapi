@@ -32,7 +32,7 @@ export default function Header() {
           </li>
           </ul>
 
-          <div className=''>
+          <div className='hidden md:flex'>
             <ul className='flex gap-7'>
           <li className='font-bold'>
             <Link href="/login">Login</Link>

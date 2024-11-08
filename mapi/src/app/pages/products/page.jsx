@@ -1,13 +1,24 @@
-import React from 'react'
+// app/products/page.tsx
 
-export default function page() {
+import React from 'react';
+import Link from 'next/link';
+import products from './products'; // Make sure this path is correct
+
+const ProductsList = () => {
   return (
     <div>
-      <h1>Product list</h1>
-      <h2>product 1</h2>
-      <h2>product 2</h2>
-      <h2>product 3</h2>
-      
+      <h1>Products</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <Link href={`/pages/products/${product.id}`}>
+              {product.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
-  )
-}
+  );
+};
+
+export default ProductsList;
