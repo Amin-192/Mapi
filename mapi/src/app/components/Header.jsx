@@ -10,7 +10,7 @@ export default function Header() {
   };
 
   return (
-    <div>
+    <div className='bg-black text-white'>
       <nav className='flex justify-between rounded-2xl shadow-2xl py-4 px-7 items-center'>
         {/* Logo */}
         <div>
@@ -35,10 +35,10 @@ export default function Header() {
           <div className='hidden md:flex'>
             <ul className='flex gap-7'>
           <li className='font-bold'>
-            <Link href="/login">Login</Link>
+            <Link href="/auth/login">Login</Link>
           </li>
           <li className='font-bold'>
-            <Link href="/register">Sign up</Link>
+            <Link href="/auth/register">Sign up</Link>
           </li>
         </ul>
         </div>
