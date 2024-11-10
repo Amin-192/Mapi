@@ -1,13 +1,16 @@
-// app/auth/register/page.tsx
-'use client'; // Ensure this component is client-side
+'use client'; 
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
+  const router = useRouter();
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle registration logic here (e.g., API calls, state updates)
     console.log('Registration form submitted');
+    router.push('/');
   };
 
   return (

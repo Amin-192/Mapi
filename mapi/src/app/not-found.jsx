@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Header from '../app/components/Header'
-
+import Link from 'next/link'
 export default function NotFound() {
   return (
     <div className='bg-gradient-to-r from-fuchsia-400 to-zinc-900 h-screen overflow-hidden relative flex items-center justify-center'>
@@ -21,10 +21,16 @@ export default function NotFound() {
       </div>
 
       {/* Not Found Message */}
-      <h2 className='text-9xl font-bold font-cherry text'>
-        Page Not Found
-      </h2>
-
+      <div className='flex flex-col gap-32'>
+  <h2 className='text-5xl md:text-9xl font-bold font-cherry'>
+    Page Not Found
+  </h2>
+  <div className="relative z-10">
+    <Link href="/" className="text-6xl p-2 rounded-2xl bg-white hover:bg-gray-200 hover:scale-105 transition">
+      GO BACK HOME
+    </Link>
+  </div>
+</div>
       <style jsx>{`
         @keyframes shooting-star {
           0% {

@@ -30,6 +30,9 @@ export default function Header() {
           <li className='font-bold'>
             <Link href="/pages/products">Products</Link>
           </li>
+          <li className='font-bold'>
+            <Link href="/pages/test-loading">test-loading</Link>
+          </li>
           </ul>
 
           <div className='hidden md:flex'>
