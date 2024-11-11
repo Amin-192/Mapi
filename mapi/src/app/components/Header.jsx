@@ -15,7 +15,7 @@ export default function Header() {
         {/* Logo */}
         <div>
           <Link href="/" className='flex gap-1'>
-            <h1 className='font-cherry text-xl'>Logo</h1>
+            <img src="/logo.png" alt="Logo" className='h-12 w-12 rounded-2xl shadow-2xl' />
           </Link>
         </div>
 
