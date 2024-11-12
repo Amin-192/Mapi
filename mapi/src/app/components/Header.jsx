@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import DivGenerator from './DivGenerator';
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function Header() {
 
   return (
     <div className='bg-black text-white h-[60px]'>
-      
+      <DivGenerator/>
       <nav className='flex justify-between rounded-2xl shadow-2xl  px-7 items-center'>
         {/* Logo */}
         <div className='flex'>
@@ -25,6 +26,7 @@ export default function Header() {
             <img src="/logo.png" alt="Logo" className='h-12 w-12 rounded-2xl shadow-2xl' />
           </Link>
         </div>
+        
 
         {/* Navigation Links for Desktop */}
         <ul className='hidden md:flex gap-8 items-center '>
