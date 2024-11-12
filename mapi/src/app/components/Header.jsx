@@ -4,16 +4,23 @@ import Link from 'next/link';
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [login, setLogin] = useState(true); // Use state for login control
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleLogin = () => {
+    setLogin(!login); // Toggle login state instead of using a separate condition
+  };
+
   return (
-    <div className='bg-black text-white'>
-      <nav className='flex justify-between rounded-2xl shadow-2xl py-4 px-7 items-center'>
+    <div className='bg-black text-white h-[60px]'>
+      
+      <nav className='flex justify-between rounded-2xl shadow-2xl  px-7 items-center'>
         {/* Logo */}
-        <div>
+        <div className='flex'>
+        <button onClick={handleLogin}>{login ? 'Log out' : 'Log in'}</button>
           <Link href="/" className='flex gap-1'>
             <img src="/logo.png" alt="Logo" className='h-12 w-12 rounded-2xl shadow-2xl' />
           </Link>
@@ -21,8 +28,12 @@ export default function Header() {
 
         {/* Navigation Links for Desktop */}
         <ul className='hidden md:flex gap-8 items-center '>
-          <li className=' font-serif font-bold'>
-            <Link href="/">Home </Link> 
+          <li className='font-serif font-bold'>
+            {login ? (
+              <Link href="/pages/dashboard">Dashboard</Link>
+            ) : (
+              <h1>LOG IN</h1>
+            )}
           </li>
           <li className='font-bold font-serif'>
             <Link href="/pages/About">About</Link>
@@ -33,17 +44,17 @@ export default function Header() {
           <li className='font-bold'>
             <Link href="/pages/test-loading">test-loading</Link>
           </li>
-          </ul>
-
-          <div className='hidden md:flex'>
-            <ul className='flex gap-7'>
-          <li className='font-bold'>
-            <Link href="/auth/login">Login</Link>
-          </li>
-          <li className='font-bold'>
-            <Link href="/auth/register">Sign up</Link>
-          </li>
         </ul>
+
+        <div className='hidden md:flex'>
+          <ul className='flex gap-7'>
+            <li className='font-bold'>
+              <Link href="/auth/login">Login</Link>
+            </li>
+            <li className='font-bold'>
+              <Link href="/auth/register">Sign up</Link>
+            </li>
+          </ul>
         </div>
 
         {/* Hamburger Menu for Mobile */}

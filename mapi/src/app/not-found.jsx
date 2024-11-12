@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <div className='bg-gradient-to-r from-fuchsia-400 to-zinc-900 h-screen overflow-hidden relative flex items-center justify-center'>
       {/* Shooting Stars Animation */}
-      <div className="absolute top-0 left-0 w-full h-full text-red-400">
+      <div className="absolute top-0 left-0 w-full h-full text-red-400 ">
         {/* Shooting stars */}
         <div className="star" style={{ top: '10%', left: '80%' }}>ERROR</div>
         <div className="star" style={{ top: '20%', left: '90%' }}>ERROR</div>

@@ -14,11 +14,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex justify-center items-center rounded-2xl bg-gradient-to-r from-fuchsia-400 to-violet-600">
+    <div className="flex justify-center items-center rounded-2xl h-screen">
       <div className="grid gap-8">
         <section
           id="back-div"
-          className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl"
+          className=" rounded-3xl"
         >
           <div className="border-8 border-transparent rounded-xl bg-white shadow-xl p-8 m-2">
             <h1 className="text-5xl font-bold text-center cursor-default text-gray-900">
