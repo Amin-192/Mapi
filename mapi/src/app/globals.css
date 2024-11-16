@@ -14,3 +14,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+ 
+.button {
+    @apply px-7 py-2 text-white bg-black rounded-2xl ; 
+  
+}  

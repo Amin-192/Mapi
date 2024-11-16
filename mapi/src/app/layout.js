@@ -2,7 +2,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
-
+import Provider from "./components/Provider";
 
 
 export const metadata = {
@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
       <head>
       <link rel="icon" href="/favicon.ico" />
       </head>
+      <Provider>
       <body
         className={` bg-gradient-to-r from-fuchsia-400 to-violet-600`}
         
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
          <Header/>
         {children}
       </body>
+      </Provider>
     </html>
   );
 }
