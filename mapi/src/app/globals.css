@@ -2,12 +2,15 @@
 
 
 
-
-
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+.header_text {
+    @apply text-4xl font-bold text-gray-800; /* Add more classes as desired */
+  }
+  .gradient_orange {
+    background: linear-gradient(to right, #fbbf24, #b45309); /* Custom gradient colors */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

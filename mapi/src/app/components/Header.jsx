@@ -1,41 +1,41 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import Link from 'next/link';
 import DivGenerator from './DivGenerator';
-
+import {signIn , signOut , useSession, getProviders} from 'next-auth/react'
+import Image from 'next/image';
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [login, setLogin] = useState(true); // Use state for login control
+  
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleLogin = () => {
-    setLogin(!login); // Toggle login state instead of using a separate condition
-  };
+  
 
   return (
     <div className='bg-black text-white h-[60px]'>
       <DivGenerator/>
-      <nav className='flex justify-between rounded-2xl shadow-2xl  px-7 items-center'>
+      <nav className='flex justify-between rounded-2xl shadow-2xl  px-7 items-center relative top-2'>
         {/* Logo */}
         <div className='flex'>
-        <button onClick={handleLogin}>{login ? 'Log out' : 'Log in'}</button>
-          <Link href="/" className='flex gap-1'>
-            <img src="/logo.png" alt="Logo" className='h-12 w-12 rounded-2xl shadow-2xl' />
+       
+          <Link href="/" className='flex gap-1 '>
+            <Image src="/logo.png" alt="Logo"
+             className=' rounded-2xl shadow-2xl'
+             width={50}
+             height={50}
+             
+              />
           </Link>
         </div>
         
 
         {/* Navigation Links for Desktop */}
         <ul className='hidden md:flex gap-8 items-center '>
-          <li className='font-serif font-bold'>
-            {login ? (
-              <Link href="/pages/dashboard">Dashboard</Link>
-            ) : (
-              <h1>LOG IN</h1>
-            )}
+          <li>
+          <Link href="/pages/dashboard">Dashboard</Link>
           </li>
           <li className='font-bold font-serif'>
             <Link href="/pages/About">About</Link>

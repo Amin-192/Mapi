@@ -6,7 +6,7 @@ import Header from "./components/Header";
 
 
 export const metadata = {
-  title: "Mapi",
+  title: "Prompty",
   description: "",
 };
 

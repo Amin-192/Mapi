@@ -1,6 +1,6 @@
 // app/auth/layout.tsx
 import React from 'react';
-import "../../app/globals.css"; // Ensure this path is correct
+import "../../app/globals.css"; 
 
 export const metadata = {
   title: "Mapi - Auth",
@@ -10,7 +10,8 @@ export const metadata = {
 export default function AuthLayout({ children }) {
   return (
     <div className={`bg-gradient-to-r from-fuchsia-400 to-violet-600 min-h-screen flex items-center justify-center`}>
-      <h1 className='relative right-[10%] font-bold text-4xl font-cherry '>AUTHENTICATION</h1>
+   
+      <img src="/logo.png" alt="Logo" className='h-[633px] rounded-2xl w-[600px]' />
       {children}
     </div>
   );
