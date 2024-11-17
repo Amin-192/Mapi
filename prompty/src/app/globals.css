@@ -9,13 +9,22 @@
 .header_text {
     @apply text-4xl font-bold text-gray-800; /* Add more classes as desired */
   }
-  .gradient_orange {
-    background: linear-gradient(to right, #fbbf24, #b45309); /* Custom gradient colors */
+  .gradient_combined {
+    background: linear-gradient(to right, #fbbf24, #b45309); /* Your gradient colors */
+    
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  
+  .gradient_combined_container {
+    background: linear-gradient(to right, #fbbf24, #b45309); /* Applies gradient to the background of divs */
+    color: white; /* Ensures text contrast (adjust if needed) */
   }
  
 .button {
     @apply px-7 py-2 text-white bg-black rounded-2xl ; 
   
 }  
+.glassmorphism {
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+}
