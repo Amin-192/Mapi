@@ -8,7 +8,7 @@ export default function Home() {
            <br className='max-md:hidden'/>
            <span className="gradient_orange">AI-powered Prompts</span>
        </h1>
-       <p className='text-center'>Prompty is an open source Ai prompting tool for modern world to discover,
+       <p className='text-center'>Prompty is an open source Ai prompting tool for the modern world to discover,
         create and share prompts
        </p>
        <Feed/>

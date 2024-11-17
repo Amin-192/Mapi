@@ -38,21 +38,7 @@ export default function Header() {
         </div>
 
         {/* Navigation Links for Desktop */}
-        <ul className='hidden md:flex gap-8 items-center'>
-          <li className='font-serif font-bold'>
-            {session ? (
-              <Link href="/pages/dashboard">Dashboard</Link>
-            ) : (
-              <Link href="/auth/login">Log In</Link>
-            )}
-          </li>
-          <li className='font-bold font-serif'>
-            <Link href="/pages/About">About</Link>
-          </li>
-          <li className='font-bold'>
-            <Link href="/pages/products">Products</Link>
-          </li>
-        </ul>
+        
 
         {/* Authentication Buttons */}
         <div className='hidden md:flex'>
@@ -60,6 +46,12 @@ export default function Header() {
             {session ? (
               <>
                 <li>
+                  < Link
+                  className='button mr-8'
+                  href='/pages/Create-prompt'
+                   
+                  >Create Post</Link>
+
                   <button
                     className='button'
                     onClick={() => signOut()}
@@ -117,12 +109,7 @@ export default function Header() {
               <li className='font-bold'>
                 <Link href="/" onClick={toggleModal}>Home</Link>
               </li>
-              <li className='font-bold'>
-                <Link href="/pages/About" onClick={toggleModal}>About</Link>
-              </li>
-              <li className='font-bold'>
-                <Link href="/pages/products" onClick={toggleModal}>Products</Link>
-              </li>
+             
               {session ? (
                 <>
                   <li>
