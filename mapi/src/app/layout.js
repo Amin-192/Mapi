@@ -17,15 +17,17 @@ export default function RootLayout({ children }) {
       <head>
       <link rel="icon" href="/favicon.ico" />
       </head>
-      <Provider>
+     
       <body
         className={` bg-gradient-to-r from-fuchsia-400 to-violet-600`}
         
       >
+         <Provider>
          <Header/>
         {children}
+        </Provider>
       </body>
-      </Provider>
+      
     </html>
   );
 }

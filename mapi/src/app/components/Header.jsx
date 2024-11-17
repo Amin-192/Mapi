@@ -1,55 +1,49 @@
 'use client';
-import React, { useState , useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import DivGenerator from './DivGenerator';
-import {signIn , signOut , useSession, getProviders} from 'next-auth/react'
+import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import Image from 'next/image';
+
 export default function Header() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [login, setLogin] = useState(true); // Use state for login control
+  const { data: session } = useSession(); // Session data for user authentication state
+  const [providers, setProviders] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // For mobile menu handling
+
+  useEffect(() => {
+    const fetchProviders = async () => {
+      const response = await getProviders(); // Fetch available auth providers
+      setProviders(response);
+    };
+    fetchProviders();
+  }, []);
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    setIsModalOpen(!isModalOpen); // Toggle mobile menu visibility
   };
 
-  const handleLogin = () => {
-    setLogin(!login); // Toggle login state instead of using a separate condition
-  };
-  const [providers , setProviders] = useState(null);
-  useEffect(()=>{
-    const setProviders = async () => {
-      await getProviders();
-
-    setProviders(response);
-    }
-    setProviders()
-  },[])
   return (
-    <div className=' text-white h-[60px]'>
-      <DivGenerator/>
-      <nav className='flex justify-between rounded-2xl   px-7 items-center relative top-2'>
+    <div className='text-white h-[60px]'>
+      <nav className='flex justify-between rounded-2xl px-7 items-center relative top-2'>
         {/* Logo */}
         <div className='flex'>
-        <button onClick={handleLogin}>{login ? 'Log out' : 'Log in'}</button>
           <Link href="/" className='flex gap-1'>
-            <Image src="/logo.png" alt="Logo"
-             className=' rounded-2xl shadow-2xl'
-             
-             width={50}
-             height={50}
-             
-              />
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              className='rounded-2xl shadow-2xl'
+              width={50}
+              height={50}
+            />
           </Link>
         </div>
-        
 
         {/* Navigation Links for Desktop */}
-        <ul className='hidden md:flex gap-8 items-center '>
+        <ul className='hidden md:flex gap-8 items-center'>
           <li className='font-serif font-bold'>
-            {login ? (
+            {session ? (
               <Link href="/pages/dashboard">Dashboard</Link>
             ) : (
-              <h1>LOG IN</h1>
+              <Link href="/auth/login">Log In</Link>
             )}
           </li>
           <li className='font-bold font-serif'>
@@ -58,53 +52,49 @@ export default function Header() {
           <li className='font-bold'>
             <Link href="/pages/products">Products</Link>
           </li>
-          <li className='font-bold'>
-            <Link href="/pages/test-loading">test-loading</Link>
-          </li>
         </ul>
 
+        {/* Authentication Buttons */}
         <div className='hidden md:flex'>
-  <ul className='flex gap-7'>
-    {
-      login ? (
-        <>
-          <li>
-            <button
-              className='button'
-              onClick={signOut}
-            >
-              Sign Out
-            </button>
-          </li>
-          <li>
-            <Link href={'/Profile'}>
-              <Image
-                src={'/user.png'}
-                alt="User"
-                width={37}
-                height={37}
-                className='rounded-full'
-              />
-            </Link>
-          </li>
-        </>
-      ) : (
-        providers &&
-        Object.values(providers).map((provider) => (
-          <li key={provider.name}> {/* Add a key */}
-            <button
-              type="button" // Corrected type
-              onClick={() => signIn(provider.id)}
-              className='button'
-            >
-              Sign In with {provider.name}
-            </button>
-          </li>
-        ))
-      )
-    }
-  </ul>
-</div>
+          <ul className='flex gap-7'>
+            {session ? (
+              <>
+                <li>
+                  <button
+                    className='button'
+                    onClick={() => signOut()}
+                  >
+                    Sign Out
+                  </button>
+                </li>
+                <li>
+                  <Link href='/Profile'>
+                    <Image
+                      src={session.user?.image || '/user.png'}
+                      alt="User"
+                      width={37}
+                      height={37}
+                      className='rounded-full'
+                    />
+                  </Link>
+                </li>
+              </>
+            ) : (
+              providers &&
+              Object.values(providers).map((provider) => (
+                <li key={provider.name}>
+                  <button
+                    type="button"
+                    onClick={() => signIn(provider.id)}
+                    className='button'
+                  >
+                    Sign In with {provider.name}
+                  </button>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
 
         {/* Hamburger Menu for Mobile */}
         <div className="md:hidden">
@@ -124,7 +114,6 @@ export default function Header() {
               </svg>
             </button>
             <ul className='flex flex-col gap-4'>
-             
               <li className='font-bold'>
                 <Link href="/" onClick={toggleModal}>Home</Link>
               </li>
@@ -132,47 +121,44 @@ export default function Header() {
                 <Link href="/pages/About" onClick={toggleModal}>About</Link>
               </li>
               <li className='font-bold'>
-                <Link href="/contact" onClick={toggleModal}>Contact</Link>
+                <Link href="/pages/products" onClick={toggleModal}>Products</Link>
               </li>
-              {login ? (<div> 
+              {session ? (
                 <>
-          <li>
-            <button
-              className='button'
-              onClick={signOut}
-            >
-              Sign Out
-            </button>
-          </li>
-          <li>
-            <Link href={'/Profile'}>
-              <Image
-                src={'/user.png'}
-                alt="User"
-                width={37}
-                height={37}
-                className='rounded-full'
-              />
-            </Link>
-          </li>
-        </>
-              </div>) : 
-              (
+                  <li>
+                    <button
+                      className='button'
+                      onClick={() => { signOut(); toggleModal(); }}
+                    >
+                      Sign Out
+                    </button>
+                  </li>
+                  <li>
+                    <Link href='/Profile'>
+                      <Image
+                        src={session.user?.image || '/user.png'}
+                        alt="User"
+                        width={37}
+                        height={37}
+                        className='rounded-full'
+                      />
+                    </Link>
+                  </li>
+                </>
+              ) : (
                 providers &&
                 Object.values(providers).map((provider) => (
-                  <li key={provider.name}> {/* Add a key */}
+                  <li key={provider.name}>
                     <button
-                      type="button" // Corrected type
-                      onClick={() => signIn(provider.id)}
+                      type="button"
+                      onClick={() => { signIn(provider.id); toggleModal(); }}
                       className='button'
                     >
                       Sign In with {provider.name}
                     </button>
                   </li>
                 ))
-              )
-              
-              }
+              )}
             </ul>
           </div>
         )}
