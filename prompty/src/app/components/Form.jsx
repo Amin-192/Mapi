@@ -4,18 +4,18 @@ export default function Form({
   type,post,setPost,submittimg,handleSubmit
 }) {
   return (
-    <div className='w-full max-w-full flex-start flex-col'>
+    <div className='w-full max-w-full flex flex-col justify-center items-center ' >
     
-      <h1 className='text-center text-7xl font-bold'
+      <h1 className='text-center text-8xl font-bold'
       ><span>{type} Post</span> </h1>
-      <p className='text-left max-w-md'>
+      <p className='text-left max-w-md mt-4'>
         {type} and share amazing prompts with the world and 
         let your imagination ruun wild with any A-I powered platform
       </p>
 
       <form
       onSubmit={handleSubmit}
-      className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'
+      className='mt-14 w-full max-w-2xl flex flex-col gap-7 glassmorphism'
       >
         <label htmlFor="">
           <span className='font-semibold text-base text-gray-700'>
